@@ -1,0 +1,39 @@
+<template>
+    <div class="todo-item">
+        <div class="todo-item__top">
+            <h3 class="todo-item__title">
+            {{ todo.title }}
+            </h3>
+            <a href="" class="trash" @click.prevent="deleteTask">
+                <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 0.666656C4.26362 0.666656 3.66666 1.26361 3.66666 1.99999V2.66666H2.33333H0.999995C0.631805 2.66666 0.333328 2.96513 0.333328 3.33332C0.333328 3.70151 0.631805 3.99999 0.999995 3.99999H1.66666V13.3333C1.66666 14.4379 2.56209 15.3333 3.66666 15.3333H10.3333C11.4379 15.3333 12.3333 14.4379 12.3333 13.3333V3.99999H13C13.3682 3.99999 13.6667 3.70151 13.6667 3.33332C13.6667 2.96513 13.3682 2.66666 13 2.66666H11.6667H10.3333V1.99999C10.3333 1.26361 9.73637 0.666656 9 0.666656H5ZM9 2.66666H5V1.99999H9V2.66666ZM4.33333 3.99999H9.66666H11V13.3333C11 13.7015 10.7015 14 10.3333 14H3.66666C3.29847 14 2.99999 13.7015 2.99999 13.3333V3.99999H4.33333ZM6.33333 7.33332C6.33333 6.96513 6.03485 6.66666 5.66666 6.66666C5.29847 6.66666 5 6.96513 5 7.33332V10.6667C5 11.0348 5.29847 11.3333 5.66666 11.3333C6.03485 11.3333 6.33333 11.0348 6.33333 10.6667V7.33332ZM8.33333 6.66666C8.70152 6.66666 9 6.96513 9 7.33332V10.6667C9 11.0348 8.70152 11.3333 8.33333 11.3333C7.96514 11.3333 7.66666 11.0348 7.66666 10.6667V7.33332C7.66666 6.96513 7.96514 6.66666 8.33333 6.66666Z" fill="black"/>
+                </svg>                      
+            </a>
+        </div>
+        <div class="todo-item__content">
+            <p class="todo-item__description">
+                {{ todo.description }}
+            </p>
+            <ul class="tag-list">
+                <li class="tag-list__item" v-for="tag in todo.chips" :key="tag.tag">
+                    {{ tag.tag }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>
+
+<script>
+//import draggable from 'vuedraggable';
+
+export default {
+    components: {  },
+    props: ['todo', 'list'],
+
+    methods: {
+        deleteTask() {
+            this.$store.dispatch('deleteTask', {id: this.todo.id, list: this.list});
+        }
+    }
+}
+</script>
