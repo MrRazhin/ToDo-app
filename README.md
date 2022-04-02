@@ -1,4 +1,4 @@
-# todo-list
+# ToDo-app vue.js
 
 ## Project setup
 ```
